@@ -1,21 +1,27 @@
-//
 //  ContentView.swift
 //  SUI_Toast
-//
 //  Created by Miguel Gallego on 22/10/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showToast = false
+    let toastMsg = "File saved successfully"
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 20) {
+            
+            Button("Show success toast") {
+                showToast = true
+            }
+            .buttonStyle(.borderedProminent)
+            
         }
         .padding()
+        
+        // This Fucking shit does not dissapear sometimes
+        .toast(isPresented: $showToast) {
+            ToastView(msg: toastMsg)
+        }
     }
 }
 
