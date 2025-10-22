@@ -33,7 +33,7 @@ struct ToastModifier<ToastContent: View>: ViewModifier {
     
     func body(content: Content) -> some View {
         ZStack {
-            content // Principal View
+            content // Principal View where toast is presented
             
             if isPresented {
                 VStack {
@@ -41,6 +41,7 @@ struct ToastModifier<ToastContent: View>: ViewModifier {
                     theToast
                 }
                 .padding()
+//                .transition(.opacity.combined(with: .move(edge: .bottom)))
                 .transition(.move(edge: .bottom))
                 .onAppear {
                     // Disappear after 2 secs
@@ -52,6 +53,7 @@ struct ToastModifier<ToastContent: View>: ViewModifier {
                 }
             }
         }
+        .animation(.easeInOut(duration: 0.3), value: isPresented)
     }
 }
 
