@@ -18,7 +18,6 @@ struct ContentView: View {
         }
         .padding()
         
-        // This Fucking shit does not dissapear sometimes
         .toast(isPresented: $showToast) {
             ToastView(msg: toastMsg)
         }
